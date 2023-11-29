@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from .models import *
 from .forms import PostForm
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -17,7 +19,9 @@ def home(request):
             'title': 'Zen of Python',
       }
       return render(request,'blog/home.html',context)
-    
+
+
+@login_required    
 def PostCreate(request):
       if request.method == 'GET':
             context = {'form': PostForm()}
@@ -35,7 +39,7 @@ def PostCreate(request):
                 messages.error(request, 'Please correct the following errors:')
           
            
-
+@login_required
 def PostEdit(request,id):
       post = get_object_or_404(Post,id=id)
       if request.method=='GET':
@@ -58,7 +62,7 @@ def PostEdit(request,id):
                   return render (request,'blog/post_form.html',{'form':form})
             
                   
-          
+@login_required          
 def PostDelete(request,id):
       post = get_object_or_404(Post, pk=id)
       if request.method=='GET':

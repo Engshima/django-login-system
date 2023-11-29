@@ -9,6 +9,21 @@
 </head>
 <body>
     
+      <header>
+           
+        
+        {% if request.user.is_authenticated %}
+            <span>Hi{{request.user.username | title}}</span>
+            <a href="{% url "users:logout" %}">logout</a>
+
+        {% else %}
+            <a href="{% url "users:login" %}">login</a>
+    
+        {% endif %}
+            
+
+      </header>
+
     {% if messages %}
     <div class="messages">
     {% for message in messages %}
