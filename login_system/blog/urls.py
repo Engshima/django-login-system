@@ -9,5 +9,6 @@ urlpatterns = [
     path('about/',views.about, name='about'),
     path('post/create',views.PostCreate, name='PostCreate'),
     path('post/edit/<int:id>/',views.PostEdit, name='post-edit'),
+    path('post/delete/<int:id>/',views.PostDelete, name='post-delete'),
 ]
 

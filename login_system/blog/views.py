@@ -59,7 +59,20 @@ def PostEdit(request,id):
             
                   
           
-     
+def PostDelete(request,id):
+      post = get_object_or_404(Post, pk=id)
+      if request.method=='GET':
+            form = PostForm(instance=post)
+            context={
+                  'form':form,
+                  'id' : id,
+            }
+            return render(request, 'blog/post_delete.html',context)
+      elif request.method=='POST':
+            post.delete()
+            messages.success(request,"'The post has been deleted successfully.'.")
+            return redirect('blog:posts')
+             
 
      
 def about(request):
