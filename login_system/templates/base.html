@@ -13,11 +13,14 @@
            
         
         {% if request.user.is_authenticated %}
+            <a href="{% url "blog:posts" %}">My Posts</a>
+            <a href="{% url "blog:PostCreate" %}">New Post</a>
             <span>Hi{{request.user.username | title}}</span>
             <a href="{% url "users:logout" %}">logout</a>
 
         {% else %}
             <a href="{% url "users:login" %}">login</a>
+            <a href="{% url 'users:register' %}">Register</a>
     
         {% endif %}
             
